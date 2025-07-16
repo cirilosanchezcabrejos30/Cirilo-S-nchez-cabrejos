@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubre los principales atractivos turísticos, naturales y culturales de Santa Cruz, Cajamarca, Perú. Información sobre aguas termales, bosques petrificados, miradores y más.">
+    <title>Turismo en Santa Cruz - Cajamarca, Perú</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .header-content h1 {
+            font-size: 4em;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-content .subtitle {
+            font-size: 1.4em;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .header-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-text {
+            color: white;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        /* Navigation */
+        .nav-section {
+            background: rgba(255,255,255,0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .attractions-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .nav-item {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, #764ba2, #667eea);
+        }
+
+        /* Attractions Grid */
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .attraction-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .card-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: white;
+            font-weight: bold;
+        }
+
+        .attraction-card:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .title-icon {
+            font-size: 1.2em;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card-description {
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.7;
+        }
+
+        .card-details {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .detail-icon {
+            margin-right: 10px;
+            color: #667eea;
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .location-badge {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Específicos para cada lugar */
+        .termales { background: linear-gradient(135deg, #74b9ff, #0984e3); }
+        .grutas { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .bosque { background: linear-gradient(135deg, #00b894, #00cec9); }
+        .pinturas { background: linear-gradient(135deg, #fdcb6e, #e17055); }
+        .reservada { background: linear-gradient(135deg, #55a3ff, #003d82); }
+        .ventanillas { background: linear-gradient(135deg, #fd79a8, #e84393); }
+        .mirador { background: linear-gradient(135deg, #fab1a0, #e17055); }
+        .cerro { background: linear-gradient(135deg, #81ecec, #00b894); }
+
+        /* Footer Info */
+        .footer-info {
+            background: rgba(255,255,255,0.9);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content h1 { font-size: 2.5em; }
+            .attractions-grid { grid-template-columns: 1fr; }
+            .attractions-nav { flex-direction: column; align-items: center; }
+            .container { padding: 10px; }
+            .card-content { padding: 20px; }
+        }
+
+        /* Animaciones */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .attraction-card {
+            animation: slideInUp 0.6s ease forwards;
+        }
+
+        .attraction-card:nth-child(1) { animation-delay: 0.1s; }
+        .attraction-card:nth-child(2) { animation-delay: 0.2s; }
+        .attraction-card:nth-child(3) { animation-delay: 0.3s; }
+        .attraction-card:nth-child(4) { animation-delay: 0.4s; }
+        .attraction-card:nth-child(5) { animation-delay: 0.5s; }
+        .attraction-card:nth-child(6) { animation-delay: 0.6s; }
+        .attraction-card:nth-child(7) { animation-delay: 0.7s; }
+        .attraction-card:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-content">
+                <h1>Tierra de la cordialidad Santa Cruz - Cajamarca - Perú</h1>
+                <link rel="stylesheet" href="styles.css">
+                <img src="santa.jpeg" alt="Santa Cruz" width: 200px; height="700px">
+                <p class="subtitle">Descubre los Tesoros Naturales y Culturales del Norte Peruano</p>
+                
+                <div class="header-info">
+                    <p class="info-text">
+                        La provincia de Santa Cruz, ubicada en el departamento de Cajamarca, es un destino extraordinario que combina 
+                        riqueza natural, patrimonio arqueológico y tradiciones ancestrales. Con paisajes que van desde aguas termales 
+                        curativas hasta bosques petrificados únicos, este territorio ofrece experiencias inolvidables para los amantes 
+                        del turismo de naturaleza y cultura.
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <div class="nav-section">
+            <h2 class="nav-title">🌟 Principales Atractivos Turísticos</h2>
+            <div class="attractions-nav">
+                <a href="#termales" class="nav-item">🌊 Aguas Termales</a>
+                <a href="#grutas" class="nav-item">🕳️ Grutas Misteriosas</a>
+                <a href="#bosque" class="nav-item">🌲  Bosque Petrificado de Piedra Chamana</a>
+                <a href="#pinturas" class="nav-item">🎨 El Tragadero en Ninabamba</a>
+                <a href="#ventanillas" class="nav-item">🏛️ Ventanillas</a>
+                <a href="#mirador" class="nav-item">👁️ Mirador</a>
+                <a href="#cerro" class="nav-item">⛰️ Cerro Tren</a>
+                <a href="#Bosque" class="nav-item">⛰️ Bosque nublado</a>
+                <a href="#complejo" class="nav-item">🕳️  Complejo arqueológico</a>
+            </div>
+        </div>
+
+    
+        <!-- Attractions Grid -->
+        <div class="attractions-grid" style="justify-items: center;">
+            <!-- Chancay Baños -->
+            <div class="attraction-card termales" id="termales" style="margin-left:auto; margin-right:auto;">
+            <div class="card-image" style="display: flex; align-items: center; justify-content: center;">
+                <img src="chancay.jpg" alt="Aguas Termales de Chancay Baños" style="width:100%; height:250px; object-fit:cover; display:block;">
+                <div class="image-overlay">
+                <span>Ver más detalles</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">
+                <span class="title-icon">🌊</span>
+                Aguas Termales de Chancay Baños
+                </h3>
+                <p class="card-description">
+                Recurso termomedicinal excepcional ubicado a 2,200 msnm, famoso por sus propiedades curativas. 
+                Estas aguas cloro-sulfurosas emergen naturalmente del subsuelo del cerro Chancay Baños, 
+                ofreciendo un oasis de relajación y bienestar en medio de paisajes montañosos espectaculares.
+                Para llegar a los baños termales, se puede tomar un carro desde la ciudad de Santa Cruz, que es la capital de la provincia. 
+                El viaje desde Santa Cruz hasta Chancay Baños dura aproximadamente una hora y 20 km desde Santa Cruz y el costo del pasaje es de alrededor de 5 soles.
+                </p>
+                <div class="location-badge">📍 Distrito: Chancay Baños</div>
+                <div class="card-details">
+                <div class="detail-row">
+                    <span class="detail-icon">🌡️</span>
+                    <span>Temperatura: 35-45°C</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-icon">💊</span>
+                    <span>Propiedades medicinales</span>
+                </div>
+                </div>
+            </div>
+            </div>
+                            <!-- Grutas de Ushcupishgo -->
+                            <div class="attraction-card grutas" id="grutas">
+                                <div class="card-image">
+                                    <img src="ushcupishgpn.jpeg" alt="Grutas de Ushcupishgo de Ninabamba" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon">🕳️</span>
+                                        Grutas de Ushcupishgo de Ninabamba
+                                    </h3>
+                                    <p class="card-description">
+                                        Las Grutas de Ushcupishgo están ubicadas en el distrito de Ninabamba, provincia de Santa Cruz, Cajamarca, Perú. 
+                                        Se llama GRUTAS DE USHCUPISHGO, palabra quechua cuyo significado es hueco de pájaro, queda ubicada en el distrito de Ninabamba, provincia de Santa Cruz, Cajamarca.
+                                        Son tres grutas maravillosas. Hay mucho por descubrir, les invito a conocer, se quedarán maravilladosSe encuentran a unos 15 minutos a pie desde la plaza principal de Ninabamba, siguiendo un camino que también lleva a la Laguna de San Lucía. 
+                                        Son conocidas por sus aguas turquesas y su nombre proviene del quechua, significando "hueco de pájaro". 
+                                        También se les conoce como Gruta de Polulo.
+                                        Se llama GRUTAS DE USHCUPISHGO, palabra quechua cuyo significado es hueco de pájaro, queda ubicada en el distrito de Ninabamba, provincia de Santa Cruz, Cajamarca. Son tres grutas maravillosas. 
+                                        Hay mucho por descubrir, les invito a conocer. La distancia sde Santa Cruz a Ninabamba es de 45 km.
+                                    </p>
+                                    <div class="location-badge">📍 Distrito: Ninabamba</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura: 14-19°C</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">💧</span>
+                                            <span>Aguas cristalinas y paisajes únicos</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bosque Petrificado de Piedra Chamana -->
+                            <div class="attraction-card bosque" id="bosque">
+                                <div class="card-image">
+                                    <img src="piedra chamana .jpg" alt="Bosque Petrificado de Piedra Chamana de Sexi" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon">🌲</span>
+                                        Bosque Petrificado de Piedra Chamana
+                                    </h3>
+                                    <p class="card-description"></p>
+                                        El Bosque Petrificado Piedra Chamana está ubicado en los Andes del norte del Perú, cerca del pueblo de Sexi.
+                                        Troncos de árboles fosilizados revelan los secretos de un bosque tropical que crecía aquí hace 39 millones de años.
+                                        Los visitantes pueden caminar entre los restos del bosque antiguo y disfrutar de una vista panorámica de los Andes.
+                                        La comunidad de Sexi invita a los visitantes a conocer el bosque petrificado y experimentar sus tradiciones culturales.
+                                        El distrito tiene una extensión de 192,87 kilómetros cuadrados,La capital de este distrito es la localidad de Sexi ubicada a 2 495 m s. n. m.
+                                        La distancia de Santa Cruz a Sexi es de 111 km.
+                                    </p>
+                                    <div class="location-badge">📍 Distrito: Sexi</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura: 12-23°C</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🪵</span>
+                                            <span>Bosques petrificados y fósiles</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- El Tragadero de Chancay Ninabamba -->
+                            <div class="attraction-card pinturas" id="pinturas">
+                                <div class="card-image">
+                                    <img src="tragadero de ninabamba.jpg" alt="El Tragadero de Chancay Ninabamba" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon"></span>
+                                        El Tragadero de Chancay Ninabamba
+                                    </h3>
+                                    <p class="card-description"></p>
+                                        Las cuevas y la red subterránea del río Chancay han sido objeto de exploraciones científicas desde el siglo XIX.
+                                        En 1868, Antonio Raimondi localizó el tragadero y sugirió su conexión con la resurgencia del río. 
+                                        La entrada principal mide 11 metros de alto por 8 metros de ancho, y tras 70 metros la progresión se vuelve peligrosa. Es un lugar ideal para los amantes de la espeleología y la aventura.
+                                        La distancia sde Santa Cruz a Ninabamba es de 45 km.
+                                    </p>
+                                    <div class="location-badge">📍 Distrito: Ninabamba</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🕳️</span>
+                                            <span>Cuevas y formaciones subterráneas</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura: 13°C - 20°C</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Las Ventanillas de la Barriada -->
+                            <div class="attraction-card ventanillas" id="ventanillas" style="background: linear-gradient(135deg, #43cea2, #185a9d);">
+                                <div class="card-image">
+                                    <img src="la barriada.jpg" alt="Las Ventanillas de la Barriada" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon">🏛️</span>
+                                        Las Ventanillas de la Barriada
+                                    </h3>
+                                    <p class="card-description">
+                                        Las Ventanillas de la Barriada se refiere a un sitio arqueológico ubicado en el caserío de Barriada Nueva, en la provincia de Santa Cruz, departamento de Cajamarca, Perú. Estas "ventanillas" son nichos funerarios excavados en formaciones rocosas, similares a las más conocidas Ventanillas de Otuzco, pero en menor escala. El sitio arqueológico también contiene restos de cerámica, huesos y textiles, lo que sugiere su uso como cementerio.
+                                        Se encuentra en el cerro Cuchicirca, en el caserío Barriada Nueva, provincia de Santa Cruz, departamento de Cajamarca. 
+                                        Características: Son construcciones de piedra y barro, con nichos funerarios excavados en la roca. 
+                                        Hallazgos: Se han encontrado fragmentos de cerámica, restos óseos y pedazos de textiles, lo que indica su uso como cementerio. 
+                                        Importancia: Aunque menos extenso que las Ventanillas de Otuzco, este sitio arqueológico es un testimonio importante de las prácticas funerarias de la cultura local. 
+                                        Conservación: Las Ventanillas de la Barriada están bajo la protección del Instituto Nacional de Cultura, según Atlas de Cajamarca. 
+                                    </p>
+                                    <div class="location-badge">📍 Caserío: Barriada Nueva</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🕳️</span>
+                                            <span>Cuevas y formaciones subterráneas</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura: 13°C - 19°C</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Cotorumi de Santa Cruz -->
+                            <div class="attraction-card cotorumi" id="cotorumi" style="background: linear-gradient(135deg, #43cea2, #185a9d);">
+                                <div class="card-image">
+                                    <img src="coturumij.jpeg" alt="Cotorumi de Santa Cruz" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon">🏛️</span>
+                                        Mirador Cotorumi de Santa Cruz
+                                    </h3>
+                                    <p class="card-description">
+                                        El Mirador Cotorumi, ubicado en Santa Cruz, Cajamarca, es un destino que promete una conexión profunda con la naturaleza y la tranquilidad andina. Conocido por su impresionante vista panorámica, este lugar ofrece un espectáculo donde el cielo parece abrazar las majestuosas montañas de los Andes.
+                                        Es el sitio ideal para quienes buscan respirar aire puro y desconectarse, sintiendo el "corazón de Cajamarca latiendo fuerte". Las fotografías de stock y comentarios de visitantes resaltan los paisajes naturales que se pueden apreciar desde este mirador, lo que lo convierte en un punto de visita imperdible para los amantes de la fotografía y la belleza escénica.
+                                        Aunque no se menciona en detalle si cuenta con infraestructura turística específica como senderos acondicionados o servicios, su esencia radica en la oportunidad de disfrutar de una vista agradable y hermosa, sumergiéndose en la serenidad del entorno cajamarquino. La distancia al mirador cotorumi es de 1.5 km desde la plaza de armas de Santa Cruz, y se puede llegar caminando o en carro.
+                                    </p>
+                                    <div class="location-badge">📍 Provincia: Santa Cruz</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🕳️</span>
+                                            <span>Vistas impresionantes</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura: 15°C°F</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Cerro tren de Santa Cruz -->
+                            <div class="attraction-card cerro" id="cerro-tren" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);">
+                                <div class="card-image">
+                                    <img src="cerro tren.jpeg" alt="Cerro tren de Santa Cruz" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon">🏛️</span>
+                                        Cerro tren de Santa Cruz
+                                    </h3>
+                                    <p class="card-description">
+                                        Se encuentra en el caserío Bebedero, en la colina de este cerro encontramos piedras talladas de gran proporción, restos de cerámica, evidencias que fue habitado en épocas remotas.
+                                        En los farallones del cerro, se observa la formación de un reloj solar bien definido en alto relieve, marcando exactamente las 11 am. Situado a unos 20 m de altura de la base del cerro.
+                                    </p>
+                                    <div class="location-badge">📍 Provincia: Santa Cruz</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🕳️</span>
+                                            <span>Antiguedad</span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura: 16°C°F</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bosque nublado de Udima -->
+                            <div class="attraction-card bosque" id="bosque-nublado" style="background: linear-gradient(135deg, #43cea2, #185a9d);">
+                                <div class="card-image">
+                                    <img src="bosque nublado.jpeg" alt="Bosque nublado de Udima" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon">🏛️</span>
+                                        Bosque nublado de Udima
+                                    </h3>
+                                    <p class="card-description">
+                                        El Refugio de Vida Silvestre Bosques Nublados de Udima es un área natural protegida de gran valor en Perú, establecida el 1 de febrero de 2010. Se extiende por 12,183.20 hectáreas entre los departamentos de Cajamarca (específicamente el distrito de Catache, provincia de Santa Cruz) y Lambayeque. Este santuario natural es crucial por su rica biodiversidad, albergando una vasta variedad de flora y fauna, incluyendo especies endémicas, raras y amenazadas; es un refugio vital para el oso de anteojos y diversos felinos como el puma, el tigrillo, el gato montés y el yaguarundí.
+                                        Además de su riqueza biológica, Udima es una fuente hídrica fundamental, ya que sus bosques nublados capturan el agua de las nubes en movimiento a través de un fenómeno conocido como "lluvia horizontal", abasteciendo las cuencas de los ríos Chancay y Zaña, y suministrando agua a poblaciones costeras como Chiclayo. El área presenta una fascinante secuencia de ecosistemas, que van desde el bosque seco de montaña en las zonas bajas, pasando por los bosques nublados en la parte media, hasta los pajonales o jalcas en las elevaciones más altas. A su valor natural se suma un importante legado arqueológico, con el sitio de Poro Poro, que contiene restos de arquitectura monumental contemporánea a Chavín de Huántar (alrededor del 500 a.C.), incluyendo una plaza cuadrangular y altares dedicados al culto al agua.
+                                    </p>
+                                    <div class="location-badge">📍 Distrito: Udima</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🕳️</span>
+                                            <span>Vista </span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura:8°C - 22°C</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Complejo arqueológico Poro Poro -->
+                            <div class="attraction-card Complejo" id="complejo - arqueológico" style="background: linear-gradient(135deg, #43cea2, #185a9d);">
+                                <div class="card-image">
+                                    <img src="poro poro.jpeg" alt="Complejo arqueológico Poro Poro" style="width:100%; height:250px; object-fit:cover;">
+                                    <div class="image-overlay">
+                                        <span>Ver más detalles</span>
+                                    </div>
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">
+                                        <span class="title-icon">🏛️</span>
+                                        Complejo arqueológico de Poro Poro
+                                    </h3>
+                                    <p class="card-description">
+                                        El Complejo Arqueológico de Poro Poro es un sitio de gran relevancia histórica y cultural ubicado en el departamento de Cajamarca, provincia de Santa Cruz, específicamente en el distrito de Catache, dentro del Refugio de Vida Silvestre Bosques Nublados de Udima.
+                                        Este complejo, descubierto en 1958, es conocido por su arte rupestre, que incluye pinturas y petroglifos del Periodo Formativo. Se han encontrado tallas elaboradas con técnicas de percusión y raspado en farallones y altares de roca. Un ejemplo notable es el "Altar lítico de los pozos", que sugiere un uso ritualista y de manejo simbólico de los recursos hídricos, posiblemente funcionando como espejos de agua para observar los ciclos estacionales y movimientos astrales.
+                                        Las investigaciones arqueológicas, incluyendo las del Dr. Walter Alva, han revelado la presencia de arquitectura monumental contemporánea a Chavín de Huántar, datada alrededor del 500 a.C. Se ha identificado una plaza cuadrangular similar a la de Chavín y altares dedicados al culto al agua.
+                                        El complejo abarca un área aproximada de 8 km² y se asienta sobre pequeñas planicies y colinas que descienden hacia el río. A pesar de su importancia, aún requiere de mayores estudios y una planificación de gestión turística para desarrollar plenamente su potencial. Es un tesoro arqueológico que ofrece una visión profunda de las antiguas culturas prehispánicas del norte peruano y su relación con el entorno natural.
+                                    <div class="location-badge">📍 Caserio: Poro Poro</div>
+                                    <div class="card-details">
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🕳️</span>
+                                            <span>Antiguedad </span>
+                                        </div>
+                                        <div class="detail-row">
+                                            <span class="detail-icon">🌡️</span>
+                                            <span>Temperatura: 18°C - 12°C</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <p style="text-align: center;">Santa Cruz es un destino turístico que ofrece una variedad de atractivos naturales y culturales, ideales para los amantes de la aventura y la historia. Desde las aguas termales curativas hasta lo misterioso de las grutas, cada lugar cuenta una historia única que invita a los visitantes a explorar y disfrutar de la belleza del norte peruano.</p>   
+                                            </div>
+                                    </div>
+                                        <div class="header-info">
+                                        <p class="info-text">
+                                        <p style="text-align: center;">I.E.S.F.T. CIRILO SÁCHEZ CABREJOS.</p>
+                                        <p class="info-text"></p>Contactanos al : 976 429 599 <footer>
+                                        <p>&copy; 2025 Mi Información. Todos los derechos reservados por la I.E.S.F.T.CSC</p>
+                                        <p><a href="#">Política de privacidad</a> | <a href="#">Términos de uso</a></p>
+</footer>
+                    </p>
+                </div>
+            </div>
+        </header>
